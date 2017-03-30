@@ -1,0 +1,31 @@
+<!DOCTYPE>
+<html>
+<head>
+<p id="fname"></p>
+<script type="text/javascript">
+	var arr = ["aa","bb","cc","dd","ee"];
+	document.getElementById('fname').innerHTML = arr;
+	var index = "";
+	var count = 0;
+		function poop(){
+		count = count+1 ;
+		index = arr.pop();
+		document.getElementById('fname').innerHTML = arr;
+		}
+function puush(){
+	if (count >0)
+{arr.push(index);
+document.getElementById('fname').innerHTML = arr;
+}} 
+	</script>
+	</head>
+<body>	
+
+	<button onclick="poop()">Pop</button>
+	
+	<button onclick="puush()">Push</button>
+	
+
+</body>
+
+</html>
