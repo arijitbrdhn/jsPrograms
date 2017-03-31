@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Remove a from array </title>
+	<p id = "Demo"></p>
+	<button onclick="removeA()">try me</button>
+	<script type="text/javascript">
+	var str = "Saurav is great player";
+	document.getElementById("Demo").innerHTML = str ;
+	function removeA(){
+var arr = str.split(" ");
+for (var i = 0;i < arr.length;)
+{
+
+	var string = arr[i];
+	var index = arr.indexOf(string);
+	var int = string.indexOf("a");
+	if ( int == -1)
+		arr.splice(index,1);
+	else
+		i++;
+}
+document.getElementById("Demo").innerHTML = arr ;
+
+	}
+		
+
+
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<p> Removing duplicacy from an array </p>
+	<p id="demo"></p>
+	<script type="text/javascript">
+		var arr = ["aa","aa","bb","cc","aa","dd","dd"];
+		document.getElementById("demo").innerHTML = arr;
+		function removeDuplicate()
+		{ for(var i=0; i<arr.length;i++)
+			{ var element = arr[i];
+			  var index = arr.indexOf(element);
+			  index = arr.indexOf(element,index+1);
+			  if (index > -1)
+			  	arr.splice(index,1);
+             }
+           document.getElementById("demo").innerHTML = arr ;
+}
+	</script>
+</head>
+
+<button onclick ="removeDuplicate()"> clickMe </button>
+
+</html>

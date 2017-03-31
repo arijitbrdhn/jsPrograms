@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Remove a from array </title>
+	<p id = "Demo"></p>
+	<button onclick="maxVowel()">try me</button>
+	<script type="text/javascript">
+	var str = "Messi is a legend from Argentina aaaaaaa";
+	document.getElementById("Demo").innerHTML = str ;
+	function maxVowel(){
+var arr = str.split(" ");
+var newArr = [];
+for (var i = 0;i < arr.length;i++)
+{   var count = 0;
+	var string = arr[i];
+     var int = string.length;
+	for (var j=0; j< int; j++){
+     var char = string.charAt(j);
+       if (char=="a"||char=="e"||char=="i"||char=="o"||char=="u")
+       	count++;
+}
+	newArr[i]= count;
+	} 
+var index = 0;
+var max = newArr[0];
+for(var l = 1; l< newArr.length; l++){
+  var max2 = newArr[l];
+  if (max2>max)
+  		{ 
+  			max = max2;
+  			index = l ;
+  		}
+
+}
+var final = arr[index];
+document.getElementById("Demo").innerHTML = final ;
+	}
+		
+
+
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

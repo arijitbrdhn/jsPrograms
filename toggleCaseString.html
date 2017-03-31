@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> toggle case string </title>
+	<button onclick="toggleCase()"> try me </button>
+	<script type="text/javascript">
+		var str = "Arijit Bardhan";
+		var string = "";
+		function toggleCase()
+		{  for (var i =0;i < str.length;i++)
+			{
+
+			var char = str.charAt(i);
+			if (char == char.toUpperCase())
+			{
+				char = char.toLowerCase();
+			}
+			else{
+				char = char.toUpperCase();
+			}
+
+              string = string + char;
+          }
+           document.write(string);
+		}
+
+
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
