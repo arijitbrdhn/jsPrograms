@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Remove a from array </title>
+	<p id = "Demo"></p>
+	<button onclick="maxVowel()">try me</button>
+	<script type="text/javascript">
+	var str = "imi is dhhfgd hhh jdf dhhd";
+	document.getElementById("Demo").innerHTML = str ;
+	function maxVowel(){
+var arr = str.split(" ");
+var string2 = "";
+for (var i = 0;i < arr.length;i++)
+{   
+	var string = arr[i];
+	var string3 = "";
+	var temp = string.length;
+    for (var j= 0; j< temp; j++){
+     var char = string.charAt(j);
+     if (j==0)
+     char = char.toUpperCase();
+    else
+     char = char.toLowerCase();
+     string3 = string3 + char ;	
+     }
+     string2 = string2 + " " + string3 ;
+ }
+document.getElementById("Demo").innerHTML = string2 ;
+	}
+		
+
+
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>
