@@ -1,0 +1,149 @@
+<html>
+<head>
+<title>Sudoku Board</title>
+
+<style>
+.TWOCARDS { position: relative; }
+.CARD     { position: absolute; top: 0px; text-align: center; }
+#card_A   { left: 20px;  top : 30px; }
+.CARD td  { background-color: yellow; width: 20px; height: 30px; text-align: center; }
+</style>
+
+<script>
+// Modified from: http://www.codingforums.com/showthread.php?t=163605
+// For: http://www.webdeveloper.com/forum/showthread.php?p=1004628#post1004628
+
+var cardSize = 9;
+
+function setColumn( cells, colnum ) {
+    var picked = new Array();
+    var num = 0;
+    var str = '';
+    for ( var row = 0; row < cardSize; ++row ) {
+        var cellnum = row * cardSize + colnum;
+        while ( cellnum != 81 ) {
+            num = cellnum;
+            if ( picked["N"+num] == null ) {
+                picked["N"+num] = num;
+                str = '<input id="Position'+num+'" type="text" size="1" value="">';
+                cells[cellnum].innerHTML = str;
+                break;
+            }
+        }
+        cells[cellnum].onclick = function(){ pick(this); }
+    }
+}
+function setCard( letter ) {
+    var card = document.getElementById("card_"+letter);
+    var tds  = card.getElementsByTagName("td");
+    for ( var c = 0; c < cardSize; ++c ) { setColumn( tds, c ); }
+//    tds[12].onclick();
+}
+function setBoth( ) {
+    setCard("A");
+}                     
+function pick(cell) {
+    cell.style.backgroundColor = 
+        cell.style.backgroundColor == "lightgreen" ? "yellow" : "lightgreen";
+}
+
+function columnWin( cells, col ) {
+    for ( var row = 0; row < cardSize; ++row ) {
+        var cellnum = row * cardSize + col;
+        if ( cells[cellnum].style.backgroundColor != "lightgreen" ) return 0;
+    }
+    return 1;
+}
+function rowWin( cells, row ) {
+    for ( var col = 0; col < cardSize; ++col ) {
+        var cellnum = row * cardSize + col;
+        if ( cells[cellnum].style.backgroundColor != "lightgreen" ) return 0;
+    }
+    return 1;
+}
+    
+function checkForWin(letter) {
+    var card = document.getElementById("card_"+letter);
+    var tds  = card.getElementsByTagName("td");
+    var wins = 0;
+    for ( var n = 0; n < cardSize; ++n ) {
+        wins += columnWin( tds, n );
+        wins += rowWin( tds, n );
+    }
+    alert( "Total of " + wins + " wins on card " + letter );
+}
+
+function DrawBoard() {
+  var str = '';
+      str += '<table border=1 cellpadding=5>';
+  for (var r=0; r<cardSize; r++) {
+      str += '<tr>';
+      for (var c=0; c<cardSize; c++) { str += '<td></td>'; }
+      str += '</tr>';
+  }
+      str += '</table>';
+  return str;	
+}
+
+var Game = [  // enter start values for game:  example [0,....,0], for each game except last
+  [1,2,3,4,5,6,7,8,9, 0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,
+   0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,
+   0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0],
+   	
+  [1,0,0,0,0,0,0,0,0, 2,0,0,0,0,0,0,0,0, 3,0,0,0,0,0,0,0,0,
+   4,0,0,0,0,0,0,0,0, 5,0,0,0,0,0,0,0,0, 6,0,0,0,0,0,0,0,0,
+   7,0,0,0,0,0,0,0,0, 8,0,0,0,0,0,0,0,0, 9,0,0,0,0,0,0,0,0],
+   	
+  [0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,
+   0,0,0,1,2,3,0,0,0, 0,0,0,4,5,6,0,0,0, 0,0,0,7,8,9,0,0,0,
+   0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0],
+
+// Note: 
+// Something to think about:
+// Enter correct values for cell as a negative number   
+  [1,2,3,-4,-5,-6,-7,-8,-9, -4,-5,-6,7,8,9,-1,-2,-3, -7,-8,-9,-1,-2,-3,4,5,6,
+   0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,
+   0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0],
+// Then test entered value against absolute value of correct entry
+   	
+  [0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,
+   0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,
+   0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0]		// Note only last entry, no comma
+];
+function NewGame(GameNumber) {
+  if (GameNumber == '') { alert('Select a game'); }
+  var v = 0;
+  for (var i=0; i<Game[GameNumber].length; i++) {
+	v = Game[GameNumber][i];
+	if (v > 0) {
+	  document.getElementById('Position'+i).value = v; 
+	  document.getElementById('Position'+i).disabled = true;
+	  document.getElementById('Position'+i).style.fontWeight = 'bold';
+    } else {
+	  document.getElementById('Position'+i).value = '';
+	  document.getElementById('Position'+i).disabled = false;
+	}
+  }
+}
+</script>
+</head>
+<body onload="setBoth()">
+
+<select onchange="NewGame(this.value)">
+<option value="">Game</option>
+<option value="0">Row</option>
+<option value="1">Column</option>
+<option value="2">Square</option>
+<option value="3">Test</option>
+<option value="4">Blank</option>
+</select>
+
+<div class="TWOCARDS">
+
+ <div class="CARD" id="card_A">
+  <script type="text/javascript">document.write(DrawBoard());</script>
+<!-- <a href="javascript:checkForWin('A');">Check win</a> -->
+ </div>
+</div>
+</body>
+</html>

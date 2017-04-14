@@ -8,9 +8,9 @@ function calC()
  //display.setAttribute("name","txt");
  display.setAttribute("value","");
  div.appendChild(display);
- arr = ["'1'","'2'","'3'","'+'","'4'","'5'","'6'","'-'","'7'","'8'","'9'","'*'","'C'","'0'","'='","'/'"];
+ arr = ["'1'","'2'","'3'","'+'","'4'","'5'","'6'","'-'","'7'","'8'","'9'","'*'","'C'","'0'","'='","'/'","'<'","'%'","'.'","'D'"];
  p = 0;
- for (var i=0;i<4;i++){
+ for (var i=0;i<5;i++){
   var row = document.createElement("div");
   for (var j=0;j<4;j++){
   col = document.createElement("div");
@@ -37,12 +37,19 @@ mybody.appendChild(div);
 flag = false;
 }
 function disBtn(num)
-{   if (display.value=="" && (num =='+'||num =='-'||num =='*'||num =='/'||num =='C'||num =='0'||num =='='))
+{  var last = display.value.substr(display.value.length-1,1);
+ if (display.value=="" && (num =='+'||num =='-'||num =='*'||num =='/'||num =='C'||num =='0'||num =='='))
     display.value="";
 	else if(num=='=')
    display.value = eval(display.value);
    else if(num=='C')
    	display.value ="";
+   else if(num == '<')
+   	display.value = display.value.substr(0, display.value.length - 1);
+   else if(num == 'D')
+   	display.value = display.value.substr(1,display.value.length);
+  else if ((last =='+'||last =='-'||last =='*'||last =='/') && (num =='+'||num =='-'||num =='*'||num =='/') )
+   display.value = display.value ;
    else
 	display.value = display.value+num ;
  }
