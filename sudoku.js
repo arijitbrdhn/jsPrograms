@@ -42,7 +42,8 @@ function sudo()
 //console.log(newArr);
 var arrNew = []
 while(arrNew.length < 4){
-    var randomnumber = Math.ceil(Math.random()*8)
+    var randomnumber = Math.floor(Math.random()*9)
+   //console.log(randomnumber);
     if(arrNew.indexOf(randomnumber) > -1) continue;
     arrNew[arrNew.length] = randomnumber;
 }
