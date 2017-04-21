@@ -1,0 +1,14 @@
+var Resume = {
+
+"Name" : "Arijit Bardhan",
+"Phone_No" : 9990365177,
+"email_id" : "arijit.109027@gmail.com",
+"Academic_details" : {"10th":[{"School":"SRKMHS"},{"Percentage": 85},{"Board":"WBBSE"}],"12th":[{"School":"BJDVM"},{"Percentage": 80},{"Board":"WBCHSE"}],"B.Tech":[{"College":"BCREC"},{"CGPA": 7.71},{"University":"WBUT"}]},
+"Technical_skills" : ["Java","Javascript","PLC"],
+"Training" : {"Industrial":"Alloy Steel Plant","Automation":"Prolific"},
+"Project" : "Detection of proper page insertion in a printer",
+"Languages_known" : ["English","Hindi","Bengali"],
+"Hobbies" : ["Playing Cricket","Solving Sudoku"]
+
+}
+//var cv = JSON.stringify(Resume);

@@ -3,45 +3,43 @@ var final = [] ;
 var newArr = []; 
 var resetArr = [] ;
 var insert = 0 ;
-function sudo()
+function sudoku9()
 { 
  
  var mybody = document.getElementsByTagName("body")[0];
  mybody.style.background = "#ADD8E6";
  var div = document.createElement("div");
-
-
  div.align = 'center';
  var arr = [];
  var mask = [];
- var btnArr = ["'1'","'2'","'3'"];
+ var btnArr = ["'1'","'2'","'3'","'4'","'5'","'6'","'7'","'8'","'9'"];
  var p = 0; 
  var start = 0;
- for (var k = 0; k < 3;k++){
+ for (var k = 0; k < 9;k++){
      
       arr[k] = [];
       final[k] = [];
 
-   for (var m = 0; m < 3;m++){
+   for (var m = 0; m < 9;m++){
      
-      arr [k][m] = (k*1 + Math.floor(k/3) + m) % 3 + 1;
+      arr [k][m] = (k*3 + Math.floor(k/3) + m) % 9 + 1;
       final [k][m] = [];
 
      }
 }
   
-  fisherYates(arr);
+  //fisherYates(arr);
 
  
-   for (var k = 0; k < 3;k++){
+   for (var k = 0; k < 9;k++){
       newArr[k] = [];
-   for (var m = 0; m < 3;m++){
+   for (var m = 0; m < 9;m++){
         newArr [k][m] = arr [k][m];
      }
 }
 //console.log(newArr);
 var arrNew = []
-while(arrNew.length < 4){
+while(arrNew.length < 38){
     var randomnumber = Math.floor(Math.random()*9)
    //console.log(randomnumber);
     if(arrNew.indexOf(randomnumber) > -1) continue;
@@ -51,17 +49,20 @@ while(arrNew.length < 4){
 
   //console.log(arrNew);
   //console.log(newArr);
+
+
+
   var count = 0;
-  for (var i=0;i<3;i++){
+  for (var i=0;i<9;i++){
   var row = document.createElement("div");
-  row.style.width = "126px";
-  row.style.height = "42px";
-  for (var j=0;j<3;j++){
+  row.style.width = "42px";
+  row.style.height = "378px";
+  for (var j=0;j<1;j++){
    var col = document.createElement("div");
    //col.setAttribute("type","text");
    //col.style.visibility = "hidden";
   col.style.cssFloat = "left";
-  col.style.width = "42px";
+  col.style.width = "378px";
   col.style.height = "42px";
   cell = document.createElement("input");
   cell.setAttribute("type","div");
@@ -75,8 +76,8 @@ while(arrNew.length < 4){
       cell.setAttribute("onclick","redirect()");
       cell.style.background = "grey";
       var content = arrNew[start];
-      var rowVal = Math.floor(content/3);
-      var colVal = content%3 ;
+      var rowVal = Math.floor(content%9);
+      var colVal = content%9 ;
       cell.setAttribute("value",newArr[rowVal][colVal]);
        final[rowVal][colVal] = cell.value ; 
        start++ ;
@@ -103,7 +104,12 @@ while(arrNew.length < 4){
 
  } 
  
- for (var j=0;j<3;j++){
+
+
+
+
+
+ for (var j=0;j<9;j++){
   var button = document.createElement("input");
   button.setAttribute("type","button");
   button.style.background = "#D8BFD8";
@@ -116,24 +122,6 @@ while(arrNew.length < 4){
   div.appendChild(button);
 } 
 
-   //console.log(arrNew); 
-/* function set(eval){
-
-for(var i=0;i<4;i++)
-{
-  var content = eval;
-  //console.log(content);
-  var rowVal = Math.floor((content/3)+1);
-  var colVal = content%3 ;
-  //console.log(colVal);
-  //console.log(newArr[rowVal][colVal]);
-   var cellVal = document.getElementById(content);
-  //console.log(celVal);
-  cellVal.value = newArr[rowVal][colVal] ;
-  
-} 
-  
-}*/
 
 
   var temp1=document.createElement("br");
@@ -168,7 +156,8 @@ for(var i=0;i<4;i++)
 
  }
 
- function fisherYates ( myArray ) {
+ function fisherYates ( myArray ) 
+ {
   var i = myArray.length;
   if ( i == 0 ) return false;
   while ( --i ) {
@@ -180,17 +169,20 @@ for(var i=0;i<4;i++)
    }
 }
 
-function get(elem){
+
+function get(elem)
+ {
 
   idt = elem ;
   
   }
 
+
 function disVal(vall)
 {  //console.log(idt) ;
    //console.log(vall);
-   var rowVall = Math.floor(idt/3);
-    var colVall = idt%3 ;
+   var rowVall = Math.floor(idt%9);
+    var colVall = idt%9 ;
 
  var txtVal = document.getElementById(idt);
   txtVal.disabled = false ;
@@ -200,44 +192,51 @@ function disVal(vall)
 
 }
  
+
 function finalFun(){
   var show = 0 ;
-  for (var d=0; d<3;d++){
-    for (var e=0; e<3;e++){
+  for (var d=0; d<9;d++){
+    for (var e=0; e<9;e++){
 
      if(final[d][e]==newArr[d][e])
       show++;
    
     }
-  }
+   }
 if(show==9)
-{
+  {
    alert ("Correct");
    location.reload();
   
-}
+   }
 else
  {
    alert ("Wrong"); 
-   restart();
+   location.reload();
   }
  
 }
+
 
 function reset(pass){
   var remover = pass ;
   var removed = document.getElementById(remover);
   removed.disabled = true ;
-}
+  }
 
 
-function redirect(){
+function redirect()
+ {
+
   idt = "";
-}
+  
+  }
+
+
 
 function restart()
 {
-  for(var sz=0;sz<5;sz++)
+  for(var sz=0;sz<43;sz++)
   {
     var idf = resetArr[sz];
     var newCell = document.getElementById(idf);
@@ -245,25 +244,4 @@ function restart()
 
   }
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
